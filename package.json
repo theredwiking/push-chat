@@ -1,0 +1,17 @@
+{
+  "name": "push-chat",
+  "version": "0.0.1",
+  "description": "Learn to use push-chat",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon server"
+  },
+  "author": "theredwiking",
+  "license": "ISC",
+  "dependencies": {
+    "pushbullet": "^2.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
