@@ -1,5 +1,6 @@
 const Pushbullet = require('pushbullet');
 const dotenv = require('dotenv');
+const tickle = require('./src/tickle');
 
 dotenv.config();
 const pusher = new Pushbullet(process.env.TOKEN)
@@ -21,19 +22,7 @@ stream.on('error', (error) => {
 stream.on('tickle', () => {
     pusher.history({limit: 5, modified_after: (Math.floor(new Date().getTime() / 1000) -1)}, (error, response) => {
         if (error) console.log(error);
-        switch(response.pushes[0].type) {
-            case 'link':
-                console.log(response.pushes[0].url);
-                break;
-            case 'note':
-                console.log(response.pushes[0].body);
-                break;
-            case 'file':
-                console.log(response.pushes[0].file_url);
-                break;
-            default:
-                console.log(response.pushes);
-        }
+        tickle.Tickle(response.pushes[0], pusher)
     });
 });
 
